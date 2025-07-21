@@ -1,0 +1,84 @@
+// SacredBondContractModal.jsx
+
+import React, { useState, useRef } from 'react';
+
+const SacredBondContractModal = ({ onConfirm, onClose }) => {
+  const [scrolledToEnd, setScrolledToEnd] = useState(false);
+  const scrollRef = useRef(null);
+
+  const handleScroll = () => {
+    const el = scrollRef.current;
+    if (el && el.scrollHeight - el.scrollTop === el.clientHeight) {
+      setScrolledToEnd(true);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+      <div className="bg-gradient-to-br from-indigo-900 to-purple-950 border border-white/20 text-white rounded-2xl p-8 max-w-3xl w-full relative shadow-2xl">
+        <h2 className="text-xl font-bold text-center mb-4">🌌 Sacred Bond Agreement</h2>
+
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="h-64 overflow-y-auto p-4 text-sm space-y-4 bg-white/5 rounded-lg border border-white/10"
+        >
+          <p>
+            This bond is formed under the lunar light and sacred intention of mutual energetic
+            resonance. It is not merely digital - it is spiritual. This relationship carries weight
+            in the visible and invisible realms.
+          </p>
+
+          <p>
+            By accepting this connection, you agree to uphold kindness, accountability, and
+            soul-centered integrity with your bonded partner. You promise to be present, honest,
+            and attuned to the growth of the relationship.
+          </p>
+
+          <p>
+            Should this bond come to a natural close, both parties must return to this very portal
+            to revisit the contract and initiate a conscious uncoupling with grace and care.
+          </p>
+
+          <p>
+            You acknowledge that this bond cannot be revoked unilaterally unless serious
+            transgressions such as emotional, physical, or spiritual abuse have occurred. In such
+            cases, the bond may be reviewed by a Moderator or Admin upon request.
+          </p>
+
+          <p>
+            All connections are voluntary. All exits must be witnessed with care. All souls are
+            sacred.
+          </p>
+
+          <p className="italic text-purple-200">
+            "In stardust we met. In clarity we part. In love, always." - Lunar Codex
+          </p>
+        </div>
+
+        <div className="flex justify-between items-center mt-6">
+          <button
+            onClick={onClose}
+            className="text-white/70 hover:text-white transition-all text-sm underline"
+          >
+            Nevermind...
+          </button>
+
+          <button
+            onClick={onConfirm}
+            disabled={!scrolledToEnd}
+            className={`${
+              scrolledToEnd
+                ? 'bg-purple-600 hover:bg-purple-700'
+                : 'bg-purple-900/40 cursor-not-allowed'
+            } px-6 py-2 rounded-xl text-white font-semibold transition-all duration-200`}
+          >
+            🌕 Confirm Under Moonlight
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SacredBondContractModal;
